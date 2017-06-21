@@ -19,6 +19,12 @@ ListView {
   animation-duration: 1s;
   animation-fill-mode: forwards;
 }
+.delete-container {
+  background-color: #CB1D00;
+  padding: 5;
+  height: 20;
+  margin-right: 8;
+}
 @keyframes show {
   from { opacity: 0; }
   to { opacity: 1; }

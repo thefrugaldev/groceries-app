@@ -58,6 +58,28 @@ export class ListComponent implements OnInit {
             )
     }
 
+    delete(item: Grocery) {
+        if (item.id) {
+            this.groceryListService.delete(item.id)
+                .subscribe(
+                    //How to only subscribe to errors?
+                    () => {
+                        //this.groceryList[`item.name`].remove
+                        alert({
+                            message: "Your item has been deleted.",
+                            okButtonText: "OK"
+                        });
+                    },
+                    () => {
+                        alert({
+                            message: "An error occurred while deleting an item from your list.",
+                            okButtonText: "OK"
+                        });
+                    }
+                )
+        }
+    }
+
     share() {
         let listString = this.groceryList
             .map(grocery => grocery.name)
