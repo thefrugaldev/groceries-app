@@ -56,9 +56,7 @@ export class ListComponent implements OnInit {
                 .subscribe(
                     //How to only subscribe to errors?
                     () => {
-                        //this.groceryList[`item.name`].remove
                         this.load();
-                        console.log(this.groceryList);
                     },
                     () => {
                         alert({
