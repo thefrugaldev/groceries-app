@@ -21,15 +21,7 @@ export class ListComponent implements OnInit {
     constructor(private groceryListService: GroceryListService) {}
 
     ngOnInit() {
-        this.isLoading = true;
-        this.groceryListService.load()
-            .subscribe(loadedGroceries => {
-                loadedGroceries.forEach((groceryObject) => {
-                    this.groceryList.unshift(groceryObject);
-                });
-                this.isLoading = false;
-                this.listLoaded = true;
-            });
+        this.load();
     }
 
     add() {
@@ -65,10 +57,8 @@ export class ListComponent implements OnInit {
                     //How to only subscribe to errors?
                     () => {
                         //this.groceryList[`item.name`].remove
-                        alert({
-                            message: "Your item has been deleted.",
-                            okButtonText: "OK"
-                        });
+                        this.load();
+                        console.log(this.groceryList);
                     },
                     () => {
                         alert({
@@ -78,6 +68,19 @@ export class ListComponent implements OnInit {
                     }
                 )
         }
+    }
+
+    load() {
+        this.groceryList = [];
+        this.isLoading = true;
+        this.groceryListService.load()
+            .subscribe(loadedGroceries => {
+                loadedGroceries.forEach((groceryObject) => {
+                    this.groceryList.unshift(groceryObject);
+                });
+                this.isLoading = false;
+                this.listLoaded = true;
+            });
     }
 
     share() {
